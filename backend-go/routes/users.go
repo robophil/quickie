@@ -22,13 +22,29 @@ func init() {
 }
 
 func AddUsersRoutes(r *gin.RouterGroup) {
+	r.GET("/users/:id", handleGetUser)
 	r.GET("/users", handleGetUsers)
-	r.GET("/users/:id", handleGetUsers)
-	r.POST("/users", handleGetUsers)
-	r.PUT("/users/:id", handleGetUsers)
-	r.DELETE("/users/:id", handleGetUsers)
+	r.POST("/users", handlePostUser)
+	r.PUT("/users/:id", handlePutUser)
+	r.DELETE("/users/:id", handleDeleteUser)
+}
+
+func handleGetUser(c *gin.Context) {
+	c.JSON(http.StatusOK, users)
 }
 
 func handleGetUsers(c *gin.Context) {
+	c.JSON(http.StatusOK, users)
+}
+
+func handlePostUser(c *gin.Context) {
+	c.JSON(http.StatusOK, users)
+}
+
+func handlePutUser(c *gin.Context) {
+	c.JSON(http.StatusOK, users)
+}
+
+func handleDeleteUser(c *gin.Context) {
 	c.JSON(http.StatusOK, users)
 }
