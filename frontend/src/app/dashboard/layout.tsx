@@ -6,10 +6,10 @@ export default function DashboardLayout({
 }) {
   return (
     <div className='flex flex-row h-full w-full'>
-      <aside className='h-full'>
+      <aside className='h-full p-4'>
         <DashboardAside />
       </aside>
-      <main className='h-full'>{children}</main>
+      <main className='h-full p-4'>{children}</main>
     </div>
   )
 }
