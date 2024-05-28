@@ -8,15 +8,28 @@ import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import { useRouter } from 'next/navigation'
+
+interface RoutePaths {
+  readonly [index: string]: string;
+}
 
 export default function DashboardAside() {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [currentPath, setCurrentPath] = React.useState<string>("overview");
+  const router = useRouter()
+  const paths = {
+    "overview": "/dashboard",
+    "customers": "/dashboard/customers",
+    "costs": "/dashboard/costs"
+  } as RoutePaths
+
 
   const handleListItemClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number,
+    currentPath: string,
   ) => {
-    setSelectedIndex(index);
+    setCurrentPath(currentPath);
+    router.push(paths[currentPath])
   };
 
   return (
@@ -30,16 +43,16 @@ export default function DashboardAside() {
       }
     >
       <ListItemButton
-        selected={selectedIndex === 0}
-        onClick={(event) => handleListItemClick(event, 0)}>
+        selected={currentPath === "overview"}
+        onClick={(event) => handleListItemClick(event, "overview")}>
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
         <ListItemText primary="Overview" />
       </ListItemButton>
       <ListItemButton
-        selected={selectedIndex === 1}
-        onClick={(event) => handleListItemClick(event, 1)}
+        selected={currentPath === "customers"}
+        onClick={(event) => handleListItemClick(event, "customers")}
       >
         <ListItemIcon>
           <AccountCircleIcon />
@@ -47,8 +60,8 @@ export default function DashboardAside() {
         <ListItemText primary="Customers" />
       </ListItemButton>
       <ListItemButton
-        selected={selectedIndex === 2}
-        onClick={(event) => handleListItemClick(event, 2)}
+        selected={currentPath === "costs"}
+        onClick={(event) => handleListItemClick(event, "costs")}
       >
         <ListItemIcon>
           <AttachMoneyIcon />
