@@ -1,0 +1,18 @@
+{
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "black",
+    "python.sortImports.path": "isort",
+    "python.sortImports.args": [
+        "--profile",
+        "black"
+    ],
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.extraPaths": [
+        "./src/server/services"
+    ]
+}
