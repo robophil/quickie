@@ -1,0 +1,1 @@
+example_greeting_message = "Hello, world!"

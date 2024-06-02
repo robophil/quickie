@@ -1,0 +1,19 @@
+{
+  "name": "@internal/backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "uvicorn src.server:app --host 0.0.0.0 --port 8080 --reload --log-level info",
+    "test": "pytest --ignore=tests/validation",
+    "test-validate": "pytest tests/validation/ -v -s",
+    "format": "black --version && isort src docs && black src docs",
+    "lint": "black --version && black --check .",
+    "postinstall": "pip install -r requirements.txt && pip install -r requirements.private.txt",
+    "install-dev": "pip install -r requirements.dev.txt",
+    "install:private": "pip download --platform linux_x86_64 --only-binary=:all: --no-deps --no-binary=:none: -r requirements.private.txt -d wheels/",
+    "setup-env": "cp -n .env.example .env || true",
+    "init:pythonpath": "export PYTHONPATH=$PYTHONPATH:$(pwd) && echo $PYTHONPATH",
+    "update-docs": "rm -rf docs/_build/* && SPHINX_APIDOC_OPTIONS='members,show-inheritance' PYTHONPATH=. sphinx-apidoc -f -o docs src && PYTHONPATH=. sphinx-build -E -b html docs docs/_build/html"
+  },
+  "devDependencies": {}
+}
